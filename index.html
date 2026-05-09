@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotizador Dolar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,700&family=Instrument+Sans:ital,wght@0,400;0,500;1,400&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="recursos/css/index.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="." class="nav-logo">
+                <span class="nav-dot"></span>
+                Cotizador Dólar
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <div id="error-bar" class="error-bar">
+            No se pudo conectar con la API.
+        </div>
+
+        <section class="page-header">
+            <div>
+                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.4rem">
+                    <h1>Cotizaciones del dólar</h1>
+                    <span class="live-badge"><span class="dot"></span>en vivo</span>
+                </div>
+                <p>Oficial · Blue · MEP · CCL · Tarjeta</p>
+            </div>
+            <div class="header-right">
+                <button class="btn-refresh" id="refresh-btn" onclick="cargarDatos()">
+                    <svg id="refresh-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 4 23 10 17 10" />
+                        <polyline points="1 20 1 14 7 14" />
+                        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
+                    </svg>
+                    Actualizar
+                </button>
+                <span id="last-update" style="font-size:0.78rem;color:var(--muted)">Cargando...</span>
+            </div>
+        </section>
+
+        <section id="cards-grid" class="cards-grid">
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+        </section>
+
+        <section class="converter">
+            <div class="conv-header">
+                <div class="converter-title">Conversor</div>
+                <div class="conv-toggle" role="group" aria-label="Direccion de conversion">
+                    <button class="conv-toggle-btn active" id="btn-ars" onclick="setModo('ars')">$ARS a US$</button>
+                    <button class="conv-toggle-btn" id="btn-usd" onclick="setModo('usd')">US$ a $ARS</button>
+                </div>
+            </div>
+
+            <div class="converter-input-row">
+                <span class="currency-label" id="conv-currency-label">$ARS</span>
+                <input type="number" id="conv-input" class="converter-input" placeholder="10.000" oninput="convertir()"
+                    aria-label="Monto a convertir" />
+                <span class="conv-hint" id="conv-hint-text">cuanto es en US$?</span>
+            </div>
+
+            <div class="conv-note" id="conv-note" style="display:none">
+                <span></span>
+                Usando precio de compra (lo que te pagan por tus dolares)
+            </div>
+
+            <div id="conv-results" class="conv-results"></div>
+        </section>
+    </main>
+
+    <footer class="page-footer">
+        <span>Datos provistos por <a href="https://dolarapi.com" target="_blank" rel="noopener">dolarapi.com</a></span>
+        <span>Actualización automática</span>
+    </footer>
+
+    <script src="recursos/js/index.js"></script>
+</body>
+
+</html>
