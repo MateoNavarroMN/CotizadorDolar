@@ -217,7 +217,7 @@ main {
 /* CARDS GRID */
 .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 0.75rem;
     margin-bottom: 1.5rem;
 }
@@ -405,6 +405,18 @@ main {
 .converter-input::placeholder {
     color: var(--subtle);
     font-weight: 300;
+}
+
+/* Ocultar flechas nativas del input number */
+.converter-input::-webkit-outer-spin-button,
+.converter-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.converter-input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 .conv-hint {
